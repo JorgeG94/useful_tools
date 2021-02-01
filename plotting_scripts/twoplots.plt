@@ -49,39 +49,40 @@ set style line 8 \
 
 
 
-file1="file1.dat"
-file2="file2.dat"
-file3="file3.dat"
-file4="file4.dat"
+file1="rna9.dat"
+#file2="file2.dat"
+#file3="file3.dat"
+#file4="file4.dat"
 
-set xrange[0:4000]
-set xtics 0,500,4000 font 'Times New Roman, 24'
+#set xrange[0:4000]
+#set xtics 0,500,4000 font 'Times New Roman, 24'
 # set labels every desired step and correlate to a custom label 500 -> 0.5
-set xtics ("0" 0, "0.5" 500, "1.0" 1000, "1.5" 1500, "2.0" 2000, "2.5" 2500, "3.0" 3000, "3.5" 3500, "4.0" 4000)
-set xlabel 'xlabel' offset 25 font 'Times New Roman, 30'
-set ylabel 'ylabel' font 'Times New Roman, 30'
-set lmargin 7
-set bmargin 4
+#set xtics ("0" 0, "0.5" 500, "1.0" 1000, "1.5" 1500, "2.0" 2000, "2.5" 2500, "3.0" 3000, "3.5" 3500, "4.0" 4000)
+#set xlabel 'xlabel' offset 25 font 'Times New Roman, 30'
+#set ylabel 'ylabel' font 'Times New Roman, 30'
+#set lmargin 7
+#set bmargin 4
 
 set multiplot layout 1,2  
 
 
 set key top left font 'Times New Roman, 22'
-set yrange[0:32]
-plot file1 using 1:2 title 'title1' with linespoints ls 1, \
-file1 using 1:3 title 'title2' with linespoints ls 2, \
-file2 using 1:2 title 'title3' with linespoints ls 3, \
-file3 using 1:3 title 'title4' with linespoints ls 4
+#set yrange[0:32]
+plot file1 using 1:2 title 'Time (s)' with linespoints ls 1
+#file1 using 1:3 title 'title2' with linespoints ls 2, \
+#file2 using 1:2 title 'title3' with linespoints ls 3, \
+#file3 using 1:3 title 'title4' with linespoints ls 4
 unset yrange 
 
 unset xlabel
 unset ylabel
 set key bottom right font 'Times New Roman, 22'
-set y2label 'lable of second y axis' font 'Times New Roman, 30'
-plot file3 using 1:2 title 'title1' with linespoints ls 1, \
-file3 using 1:3 title 'title2' with linespoints ls 2, \
-file4 using 1:2 title 'title3' with linespoints ls 3, \
-file4 using 1:3 title 'title4' with linespoints ls 4, \
-file4 using 1:3:4 with labels offset 5 notitle
+#set y2label 'lable of second y axis' font 'Times New Roman, 30'
+set y2label 'Speedup' font 'Times New Roman, 30'
+plot file1 using 1:3 title 'Speedup' with linespoints ls 1
+#file3 using 1:3 title 'title2' with linespoints ls 2, \
+#file4 using 1:2 title 'title3' with linespoints ls 3, \
+#file4 using 1:3 title 'title4' with linespoints ls 4, \
+#file4 using 1:3:4 with labels offset 5 notitle
 
 unset multiplot

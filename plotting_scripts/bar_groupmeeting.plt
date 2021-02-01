@@ -24,12 +24,12 @@ set style line 4 \
     linetype 1 linewidth 2 \
     pointtype 7 pointsize 1.5
 
-set style line 4 \
+set style line 5 \
     linecolor rgb 'cyan' \
     linetype 1 linewidth 2 \
     pointtype 7 pointsize 1.5
 
-set style line 4 \
+set style line 6 \
     linecolor rgb 'black' \
     linetype 1 linewidth 2 \
     pointtype 7 pointsize 1.5
@@ -39,11 +39,11 @@ set style line 4 \
 set key top left
 set style line 102 lc rgb 'black' lt 0 lw 1
 set grid front ls 102
-set xrange [0.7:7.3]
-set yrange [0.7:7.3]
+#set xrange [2.5:6.3]
+#set yrange [0.7:7.3]
 set ylabel 'Speedup' 
-set xlabel 'Number of GPUs'
-
+set xlabel 'System'
+set boxwidth 0.9 relative
 #set y2tics 20 nomirror tc lt 2
 #set y2label '4*x' tc lt 2 
 
@@ -55,14 +55,20 @@ set xlabel 'Number of GPUs'
 
 #f(x) = m * x + b 
 #fit f(x) "linear.dat" using 1:3 via m,b
-
-set title "Strong scaling on A100 "
-r="a100_strong2.dat"
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid border - 1
+terachem = "#99ffff"; v100 = "#4671d5"; a100 = "#ff0000"; v100de = "#f36e00"
+a100de = '#E62121'
+set title "Speedup against Terachem 6-31Gd "
+#r="glycine_time.dat" # normal glycine times
+#r="sto3g_glycine.dat" # log10 of basf and time
+#r="growingsto.dat" # time with growing sto
+#r="631gd_rna.dat"
+r="speedups_terachem_631gd.dat"
 #set multiplot 
-plot r using 1:2 title "ideal"  with linespoints ls 1, \
-r using 1:3 title "RNA9 (4363) STO-3G" with linespoints ls 2, \
-r using 1:4 title "RNA9 (7816) 6-31G" with linespoints ls 3, \
-r using 1:5 title "RNA9 (12412) 6-31G(d)" with linespoints ls 4
-#r using 1:6 title "MSN (8754) STO-3G" with linespoints ls 5, \
-#r using 1:7 title "RNA5 (6904) 6-31G(d)" with linespoints ls 6
-
+plot r using 2:xtic(1) ti col fc rgb terachem, \
+r using 3 ti col fc rgb v100, 1 title 'terachem'
+#r using 5 ti col fc rgb a100, \
+#r using 6 ti col fc rgb v100de, \
+#r using 7 ti col fc rgb a100de
