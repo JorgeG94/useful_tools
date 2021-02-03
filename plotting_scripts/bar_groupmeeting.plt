@@ -40,7 +40,7 @@ set key top left
 set style line 102 lc rgb 'black' lt 0 lw 1
 set grid front ls 102
 #set xrange [2.5:6.3]
-#set yrange [0.7:7.3]
+set yrange [0.0:3]
 set ylabel 'Speedup' 
 set xlabel 'System'
 set boxwidth 0.9 relative
@@ -58,17 +58,17 @@ set boxwidth 0.9 relative
 set style data histogram
 set style histogram cluster gap 1
 set style fill solid border - 1
-terachem = "#99ffff"; v100 = "#4671d5"; a100 = "#ff0000"; v100de = "#f36e00"
-a100de = '#E62121'
-set title "Speedup against Terachem 6-31Gd "
-#r="glycine_time.dat" # normal glycine times
-#r="sto3g_glycine.dat" # log10 of basf and time
-#r="growingsto.dat" # time with growing sto
-#r="631gd_rna.dat"
-r="speedups_terachem_631gd.dat"
+#terachem = "#99ffff"; v100 = "#4671d5"; a100 = "#ff0000"; v100de = "#f36e00"
+color1 = "#ea6035"
+color2 = "#5e82b2"
+
+#a100de = '#E62121'
+set title "Speedup against Terachem STO-3G "
+#r="speedups_sto3g.dat"
+r="speedups_631gd.dat"
 #set multiplot 
-plot r using 2:xtic(1) ti col fc rgb terachem, \
-r using 3 ti col fc rgb v100, 1 title 'terachem'
+plot r using 2:xtic(1) ti col linecolor rgb color1, \
+r using 3 ti col linecolor rgb color2, 1 title 'terachem' linecolor rgb 'black' lw 2
 #r using 5 ti col fc rgb a100, \
 #r using 6 ti col fc rgb v100de, \
 #r using 7 ti col fc rgb a100de
