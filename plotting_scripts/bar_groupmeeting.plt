@@ -44,6 +44,7 @@ set yrange [0.0:3]
 set ylabel 'Speedup' 
 set xlabel 'System'
 set boxwidth 0.9 relative
+set xtics rotate by 45 right
 #set y2tics 20 nomirror tc lt 2
 #set y2label '4*x' tc lt 2 
 
@@ -61,9 +62,10 @@ set style fill solid border - 1
 #terachem = "#99ffff"; v100 = "#4671d5"; a100 = "#ff0000"; v100de = "#f36e00"
 color1 = "#ea6035"
 color2 = "#5e82b2"
-
+#set label "holi" at 1,-0.2
+#show label
 #a100de = '#E62121'
-set title "Speedup against Terachem STO-3G "
+set title "Speedup against Terachem 6-31G(d) "
 #r="speedups_sto3g.dat"
 r="speedups_631gd.dat"
 #set multiplot 
