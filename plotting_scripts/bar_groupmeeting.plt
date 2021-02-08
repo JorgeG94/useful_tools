@@ -65,9 +65,9 @@ color2 = "#5e82b2"
 #set label "holi" at 1,-0.2
 #show label
 #a100de = '#E62121'
-set title "Speedup against Terachem 6-31G(d) "
+set title "Speedup against Terachem STO-3G "
 #r="speedups_sto3g.dat"
-r="speedups_631gd.dat"
+r="speedups_sto3g.dat"
 #set multiplot 
 plot r using 2:xtic(1) ti col linecolor rgb color1, \
 r using 3 ti col linecolor rgb color2, 1 title 'terachem' linecolor rgb 'black' lw 2
