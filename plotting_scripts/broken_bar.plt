@@ -83,29 +83,43 @@ set ytics nomirror
 set lmargin at screen lm
 set rmargin at screen rm
 set bmargin at screen bm
-set tmargin at screen bm + size * kk
+#set tmargin at screen bm + size * kk
+set tmargin at screen bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) )
 
 set yrange [y1:y2]
 plot r using 2:xtic(1) ti col linecolor rgb color1, \
 r using 3 ti col linecolor rgb color2, \
 r using 4 ti col linecolor rgb color3, \
 r using 5 ti col linecolor rgb color4, \
-1 title 'terachem' linecolor rgb 'black' lw 2
+1 title 'Reference' linecolor rgb 'black' lw 2
 
 unset xtics
 unset xlabel 
 unset ylabel
 set border 2+4+8
-set bmargin at screen bm + size * kk + gap
+#set bmargin at screen bm + size * kk + gap 
+set bmargin at screen bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap
 set tmargin at screen bm + size + gap
 set yrange [y3:y4]
 set key top right
+
+set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+
+set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
+
+set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+
+set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
 
 plot r using 2:xtic(1) ti col linecolor rgb color1, \
 r using 3 ti col linecolor rgb color2, \
 r using 4 ti col linecolor rgb color3, \
 r using 5 ti col linecolor rgb color4, \
-1 title 'terachem' linecolor rgb 'black' lw 2
+1 title 'Reference' linecolor rgb 'black' lw 2
 
 unset multiplot
 
