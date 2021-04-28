@@ -1,8 +1,8 @@
 # Plotting to a png output
 #set terminal wxt enhanced font 'Verdana,10' persist
 #set term png font arial 14 size 1024,768
-set terminal pngcairo size 1024,767 enhanced font 'Verdana,14'
-set output "image.png"
+set terminal pdfcairo enhanced font 'Verdana,20' size 12in,8in
+set output "image.pdf"
 set style line 1 \
     linecolor rgb '#0060ad' \
     linetype 1 linewidth 2 \
@@ -41,8 +41,8 @@ set style line 102 lc rgb 'black' lt 0 lw 1
 set grid ytics front ls 102
 #set xrange [2.5:6.3]
 #set yrange [0.0:2]
-set ylabel 'Speedup' offset 0,6.5,0 font ",16" 
-set xlabel 'System' font ",16"
+set ylabel 'Speedup' offset 0,6.5,0 font ",20" 
+set xlabel 'System' font ",20"
 #set boxwidth 0.9 relative
 #set xtics rotate by 45 right
 #set style data histogram
@@ -65,8 +65,9 @@ rm = 0.95
 gap = 0.03
 size = 0.75
 kk = 0.5
-y1 = 0.0; y2 = 3.5; y3=7.0; y4=15
-r='sto3g_bar_data.dat'
+#y1 = 0.0; y2 = 3.5; y3=7.0; y4=15 # sto
+y1 = 0.0; y2 = 7; y3=11.0; y4=16 #631g
+r='631gd_bar_dat.dat'
 #set style histogram columnstacked
 #set style data histograms
 #set key autotitle columnheader
@@ -91,7 +92,7 @@ plot r using 2:xtic(1) ti col linecolor rgb color1, \
 r using 3 ti col linecolor rgb color2, \
 r using 4 ti col linecolor rgb color3, \
 r using 5 ti col linecolor rgb color4, \
-1 title 'Reference' linecolor rgb 'black' lw 2
+1 title 'Reference' linecolor rgb 'black' lw 1
 
 unset xtics
 unset xlabel 
@@ -101,25 +102,26 @@ set border 2+4+8
 set bmargin at screen bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap
 set tmargin at screen bm + size + gap
 set yrange [y3:y4]
-set key top right
+#set key top right
+set key top left #631g
 
-set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
-lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+#set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+#lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
 
-set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
-lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
+#set arrow from screen lm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+#lm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
 
-set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
-rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
+#set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0 to screen \
+#rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 nohead
 
-set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
-rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
+#set arrow from screen rm - gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1)+abs(y4-y3) ) ) - gap / 4.0  + gap to screen \
+#rm + gap / 4.0, bm + size * (abs(y2-y1) / (abs(y2-y1) + abs(y4-y3) ) ) + gap / 4.0 + gap nohead
 
 plot r using 2:xtic(1) ti col linecolor rgb color1, \
 r using 3 ti col linecolor rgb color2, \
 r using 4 ti col linecolor rgb color3, \
 r using 5 ti col linecolor rgb color4, \
-1 title 'Reference' linecolor rgb 'black' lw 2
+1 title 'Reference' linecolor rgb 'black' lw 1
 
 unset multiplot
 

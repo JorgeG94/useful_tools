@@ -11,7 +11,7 @@ color5 = "#0060ad"
 set style line 1 \
     linecolor rgb 'black' \
     linetype 1 linewidth 2 \
-    pointtype 7 pointsize 1.5
+    pointtype 7 pointsize 1.5 dt 2
 
 set style line 2 \
     linecolor rgb color1 \
@@ -48,10 +48,10 @@ set style line 7 \
 set key top left
 set style line 102 lc rgb 'black' lt 0 lw 1
 set grid front ls 102
-set xrange [0.7:4.3]
+set xrange [450:2300]
 set yrange [0.7:4.3]
 set ylabel 'Speedup' 
-set xlabel 'Number of GPUs'
+set xlabel 'Number of Nodes'
 
 #set y2tics 20 nomirror tc lt 2
 #set y2label '4*x' tc lt 2 
@@ -65,14 +65,9 @@ set xlabel 'Number of GPUs'
 #f(x) = m * x + b 
 #fit f(x) "linear.dat" using 1:3 via m,b
 
-set title "Strong scaling on V100 STO-3G "
-r="sto3g_strong.dat"
+set title "Strong scaling on Summit "
+r="mp2.dat"
 #set multiplot 
 plot r using 1:2 title "ideal"  with linespoints ls 1, \
-r using 1:3 title "gly30" with linespoints ls 2, \
-r using 1:5 title "gly120" with linespoints ls 3, \
-r using 1:9 title "rna9" with linespoints ls 4, \
-r using 1:4 title "gly30 terachem" with linespoints ls 5, \
-r using 1:6 title "gly120 terachem" with linespoints ls 6, \
-r using 1:10 title "rna9 terachem" with linespoints ls 7
+r using 1:3 title "RIMP2" with linespoints ls 2
 
