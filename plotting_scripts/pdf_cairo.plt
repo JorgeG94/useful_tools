@@ -1,7 +1,7 @@
 # Plotting to a png output
 #set terminal wxt enhanced font 'Verdana,10' persist
 #set term png font arial 14 size 1024,768
-set terminal pdfcairo enhanced font 'Verdana,20' size 12in,8in
+set terminal pdfcairo enhanced font 'Verdana,32' size 12in,10in
 set output "image.pdf"
 set style line 1 \
     linecolor rgb '#0060ad' \
@@ -41,8 +41,8 @@ set style line 102 lc rgb 'black' lt 0 lw 1
 set grid ytics front ls 102
 #set xrange [2.5:6.3]
 #set yrange [0.0:2]
-set ylabel 'Speedup' offset 0,6.5,0 font ",20" 
-set xlabel 'System' font ",20"
+set ylabel 'Speedup' offset 0,6.5,0 font ",32" 
+set xlabel 'System' font ",32"
 #set boxwidth 0.9 relative
 #set xtics rotate by 45 right
 #set style data histogram
