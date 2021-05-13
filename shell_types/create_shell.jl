@@ -28,8 +28,8 @@ const am_to_nfuncs_mapping = Dict(
 "d" => 6,
 "f" => 10,
 "g" => 15, 
-"h" => 20,
-"i" => 25,
+"h" => 21,
+"i" => 28,
 "sp" => 4
 )
 
@@ -87,7 +87,7 @@ for angmom in 0:nang_mom
     angmom = nang_mom
   end 
   for pair in 0:angmom
-    if pair == nangmom
+    if pair == nang_mom
       pair = 10
       # account for sp shells
       ang_i = am_to_shell_mapping[10]
@@ -204,7 +204,7 @@ for angmom in 0:nang_mom
 end
 
 println("default:")
-println("std::cout << \" Shell not supported \" << std;:endl;")
+println("std::cout << \" Shell not supported \" << std::endl;")
 println("exit(1);")
 println("} // switch")
 println("} // get_am_K_from_sh_type ")
@@ -214,7 +214,7 @@ end
 function get_cost(nang_mom::Int64)
 
 println("unsigned get_ShellType_cost(ShellType shtype) {")
-println("swtich (shtype) {")
+println("switch (shtype) {")
 
 for angmom in 0:nang_mom
   if angmom == nang_mom
@@ -231,7 +231,7 @@ for angmom in 0:nang_mom
   for iter in 1:contr
     cost = iter * nfuncs
     println("case ShellType::",ang,"_",iter,":")
-    println("return $cost")
+    println("return $cost ;")
   end
 
 end
@@ -263,35 +263,53 @@ for angmom in 0:nang_mom
   if angmom == 10 
     angmom = nang_mom
   end 
-  for pair in 0:angmom
-    if pair == nang_mom
-      pair = 10
+  #for pair in 0:angmom
+    #if pair == nang_mom
+    #  pair = 10
       # account for sp shells
-      ang_i = am_to_shell_mapping[10]
-      contr_i = shell_to_contraction_mapping[ang_i] 
-    else
-      ang_i = am_to_shell_mapping[pair]
-      contr_i = shell_to_contraction_mapping[ang_i] 
-    end
+    #  ang_i = am_to_shell_mapping[10]
+    #  contr_i = shell_to_contraction_mapping[ang_i] 
+    #else
+    #  ang_i = am_to_shell_mapping[pair]
+    #  contr_i = shell_to_contraction_mapping[ang_i] 
+    #end
 
     for iteri in 1:contr
       println("	case ShellType::",ang,"_",iteri,":")
       println("	  switch (jsh_type) {")
-      for iterj in iteri:contr_i
-	println("   case ShellType::",ang,"_",iteri,":")
-	if ang == ang_i == "sp" && iteri == iterj == contr
-	  println("	return ShellPairType::",ang,ang_i,"_",iteri,"_",iterj)
-	else
-	  println("	return ShellPairType::",ang,ang_i,"_",iteri,"_",iterj,",")
-	end 
-      end
+      
+      for pair in 0:angmom
+        if pair == nang_mom
+          pair = 10
+          ang_i = am_to_shell_mapping[10]
+          contr_i = shell_to_contraction_mapping[ang_i]
+        else
+          ang_i = am_to_shell_mapping[pair]
+          contr_i = shell_to_contraction_mapping[ang_i]
+        end #if 
+
+        for iterj in iteri:contr_i
+	        println("   case ShellType::",ang_i,"_",iterj,":")
+	        if ang == ang_i == "sp" && iteri == iterj == contr
+	          println("	return ShellPairType::",ang,ang_i,"_",iteri,"_",iterj)
+	        else
+	          println("	return ShellPairType::",ang,ang_i,"_",iteri,"_",iterj,";")
+	        end
+
+      end # for iterj 
+      #println("	  default: ")
+      #println("	    print_ShellType(ish_type);")
+      #println("	    print_ShellType(jsh_type);")
+      #println("	    std::cout << \" Shel pair type not supported \" << std::endl; ")
+      #println("	    exit(1);")
+      #println("	  } //switch jsh type")
+    end
       println("	  default: ")
       println("	    print_ShellType(ish_type);")
       println("	    print_ShellType(jsh_type);")
       println("	    std::cout << \" Shel pair type not supported \" << std::endl; ")
       println("	    exit(1);")
       println("	  } //switch jsh type")
-    end
 
   end # for 2 
 
@@ -347,9 +365,9 @@ for angmom in 0:nang_mom
 	cost = nfuncs * nfuncs_i * iteri * iterj
 	println("   case ShellPairType::",ang,ang_i,"_",iteri,"_",iterj,":")
 	if ang == ang_i == "sp" && iteri == iterj == contr
-	  println("	return $cost")
+	  println("	return $cost ;")
 	else
-	  println("	return $cost")
+	  println("	return $cost ;")
 	end 
       end
     end
@@ -369,8 +387,8 @@ end
 
 
 
-#print_pairtype_func()
-#shellpairtype()
-#assign_shellpairtype()
-#get_shellpairtype_cost()
-#create_shell(7)
+print_pairtype_func(7)
+shellpairtype(7)
+assign_shellpairtype(7)
+get_shellpairtype_cost(7)
+create_shell(7)
