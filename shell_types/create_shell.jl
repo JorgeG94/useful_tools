@@ -388,7 +388,15 @@ end
 
 
 print_pairtype_func(7)
+
+# enum class ShellPairType { function 
 shellpairtype(7)
+
+# ShellPairType assign_ShellPairType function 
 assign_shellpairtype(7)
+
+#unsigned get_ShellPairType_cost(ShellPairType type) function
 get_shellpairtype_cost(7)
+
+# enum class ShellType {
 create_shell(7)
